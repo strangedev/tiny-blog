@@ -7,19 +7,16 @@ services:
     volumes:
       - mongodb:/bitnami
 
-  adminer:
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - 8088:8080
-
   # tiny-blog-ui:
 
   tiny-blog-backend:
     image: noahhummel/tiny-blog-backend
     restart: unless-stopped
     ports:
-      - 3000:8080
+      - 3000:3000
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
 
 volumes:
   mongodb:
